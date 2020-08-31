@@ -10,12 +10,23 @@
     <div id="app">
         <p v-once>{{ message }}</p>
         <p>{{ sayHi() }}</p>
+        <!-- v-bind さまざまな書き方 -->
+        <a v-bind:href="url">Google</a><br>
+        <a :href="url">Google</a><br>
+        <a :[attribute]="url">Google</a><br>
+        <a v-bind="googleObject">Google</a><br>
     </div>
     <script>
         var app = new Vue({
             el: '#app',
             data: {
-              message: 'Hello Vue!'
+              message: 'Hello Vue!',
+              url: 'https://www.google.com/',
+              attribute: 'href',
+              googleObject:{
+                  href: 'https://www.google.com/',
+                  id: 31
+              }
             },
             methods:{
                 sayHi(){
