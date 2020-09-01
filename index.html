@@ -8,6 +8,9 @@
 </head>
 <body>
     <div id="app">
+        <!-- 双方向バインディング -->
+        <input type="text" v-model="msg">
+        <p>{{ msg }}</p>
         <p v-once>{{ message }}</p>
         <p>{{ sayHi() }}</p>
         <!-- v-bind さまざまな書き方 -->
@@ -15,24 +18,44 @@
         <a :href="url">Google</a><br>
         <a :[attribute]="url">Google</a><br>
         <a v-bind="googleObject">Google</a><br>
+        <p>{{ number }}</p>
+        <button v-on:click="number += 1">カウントアップ</button>
+        <button @click="number += 1">カウントアップ</button>
+        <p v-on:mouseover="changeMouceEvent(3,$event)">マウスをおいてくださ</p>
+        <p> {{x}} , {{y}}</p><br>
+        <span v-on:mouseover="mvEnvent">反応しないでださい</span><br>
     </div>
     <script>
         var app = new Vue({
             el: '#app',
             data: {
               message: 'Hello Vue!',
+              msg: 'Hello Vue Message!',
               url: 'https://www.google.com/',
               attribute: 'href',
               googleObject:{
                   href: 'https://www.google.com/',
                   id: 31
-              }
+              },
+              number: 0,
+              x:0,
+              y:0
             },
             methods:{
                 sayHi(){
                     this.message = "Hello Vue!!!"
                     return 'Hi';
+                },
+                changeMouceEvent:
+                function(divide , event){
+                    this.x = event.clientX / divide;
+                    this.y = event.clientY / divide;
+                },
+                mvEnvent:
+                function(event){
+                    event.stopPropagation()
                 }
+
             }
           })
     </script>
