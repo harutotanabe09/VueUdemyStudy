@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-if="ok">OK!</p>
+        <p v-else>Not OK</p>
+        <template v-if="group">
+            <div>aa</div>
+            <div>bb</div>
+            <div>cc</div>
+        </template>
+        <ul>
+            <!-- TEMPLATEでもかける -->
+            <template v-for="(fruit,index) in fruits">
+                <li>{{index}}{{fruit}}</li>
+            </template>
+        </ul>
+        <ul>
+            <li v-for="(fruit,index) in fruits">{{index}}{{fruit}}</li>
+        </ul>
+        <ul>
+            <li v-for="(value,index) in object">{{index}}{{value}}</li>
+        </ul>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                ok:false,
+                group:true,
+                //配列
+                fruits: ['りんご','ばなな','なし','ココア'],
+                //オブジェクト
+                object:{
+                    firstaname: '太郎',
+                    lastaname: '田中',
+                    age: 20,
+                }
+            }
+          })
+    </script>
+</body>
+</html>
