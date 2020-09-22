@@ -8,8 +8,9 @@
 </head>
 <body>
     <div id="app">
-        <!-- 双方向バインディング -->
+        <!-- 双方向バインディング 1 -->
         <input type="text" v-model="msg">
+        <!-- 双方向バインディング 2 -->
         <p>{{ msg }}</p>
         <p v-once>{{ message }}</p>
         <p>{{ sayHi() }}</p>
@@ -19,6 +20,8 @@
         <a :[attribute]="url">Google</a><br>
         <a v-bind="googleObject">Google</a><br>
         <p>{{ number }}</p>
+        <p>{{ lessThanThreeComputed }}</p>
+        <p>{{ lessThanThreeMethod() }}</p>
         <button v-on:click="number += 1">カウントアップ</button>
         <button @click="number += 1">カウントアップ</button>
         <p v-on:mouseover="changeMouceEvent(3,$event)">マウスをおいてくださ</p>
@@ -38,13 +41,17 @@
                   id: 31
               },
               number: 0,
+              // 表現できない  lessThanThree: this.number > 3 ? '3以上' : '3以下',
               x:0,
-              y:0
+              y:0,
             },
             methods:{
                 sayHi(){
                     this.message = "Hello Vue!!!"
                     return 'Hi';
+                },
+                lessThanThreeMethod: function(){
+                    return this.number > 3 ? '3以上' : '3以下'
                 },
                 changeMouceEvent:
                 function(divide , event){
@@ -54,8 +61,14 @@
                 mvEnvent:
                 function(event){
                     event.stopPropagation()
+                },
+            },
+            // computedプロパティ：プロパティっぽく扱う
+            // 非同期
+            computed:{
+                lessThanThreeComputed: function(){
+                    return this.number > 3 ? '3以上' : '3以下'
                 }
-
             }
           })
     </script>
